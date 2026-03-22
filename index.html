@@ -291,17 +291,6 @@
             filter: blur(2px);
         }
 
-        /* Mobile Menu Toggle */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -345,15 +334,19 @@
             animation: fadeUp 1s ease 0.2s forwards;
         }
 
+        /* FIXED: Use ch units to scale with font size */
         .typing-text {
             color: var(--accent-primary);
             border-right: 2px solid var(--accent-primary);
             padding-right: 4px;
             animation: blink 1s infinite;
             display: inline-block;
-            min-width: 220px;
+            width: 16ch; /* Character units - scales with font size */
+            font-size: inherit; /* Ensure it matches h1 exactly */
             text-align: left;
             vertical-align: bottom;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .hero-cta {
@@ -563,102 +556,6 @@
             opacity: 0.2;
         }
 
-        /* Credentials Timeline */
-        .credentials {
-            background: var(--bg-secondary);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 4rem auto 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: var(--border);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 50%;
-            position: relative;
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .timeline-item:nth-child(even) {
-            justify-content: flex-start;
-            padding-right: 0;
-            padding-left: 50%;
-            transform: translateX(30px);
-        }
-
-        .timeline-item:nth-child(even).visible {
-            transform: translateX(0);
-        }
-
-        .timeline-content {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 12px;
-            max-width: 350px;
-            position: relative;
-            backdrop-filter: blur(10px);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
-            box-shadow: 0 0 20px var(--accent-primary);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: calc(50% - 6px);
-        }
-
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: calc(50% - 6px);
-        }
-
-        .timeline-date {
-            font-size: 0.875rem;
-            color: var(--accent-primary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-desc {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
         /* Contact Section */
         .contact {
             text-align: center;
@@ -681,6 +578,7 @@
             justify-content: center;
             gap: 2rem;
             margin-top: 3rem;
+            flex-wrap: wrap;
         }
 
         .social-link {
@@ -736,10 +634,6 @@
                 display: none;
             }
 
-            .mobile-menu-btn {
-                display: block;
-            }
-
             .nav-right {
                 gap: 1rem;
             }
@@ -753,23 +647,6 @@
                 direction: ltr;
             }
             
-            .timeline::before {
-                left: 20px;
-            }
-            
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                padding-left: 60px;
-                padding-right: 0;
-                justify-content: flex-start;
-            }
-            
-            .timeline-item .timeline-dot,
-            .timeline-item:nth-child(even) .timeline-dot {
-                left: 14px;
-                right: auto;
-            }
-            
             body {
                 cursor: auto;
             }
@@ -779,7 +656,7 @@
             }
 
             .typing-text {
-                min-width: 200px;
+                width: 14ch; /* Slightly smaller for mobile but still fits longest word */
             }
 
             .theme-toggle {
@@ -818,7 +695,6 @@
                 <div class="nav-links">
                     <a href="#about">Approach</a>
                     <a href="#work">Case Studies</a>
-                    <a href="#certs">Credentials</a>
                     <a href="#contact">Contact</a>
                 </div>
                 
@@ -827,8 +703,6 @@
                     <div class="toggle-slider"></div>
                     <span class="toggle-icon sun-icon">☀️</span>
                 </button>
-                
-                <button class="mobile-menu-btn" onclick="alert('Menu coming soon')">☰</button>
             </div>
         </div>
     </nav>
@@ -939,63 +813,19 @@
         </div>
     </section>
 
-    <section class="credentials" id="certs">
-        <div class="container">
-            <p class="subtitle">Professional Development</p>
-            <h2>Credentials & Certifications</h2>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Target 2026</div>
-                        <div class="timeline-title">CISSP</div>
-                        <div class="timeline-desc">Certified Information Systems Security Professional - Gold standard for security leadership</div>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Target 2026</div>
-                        <div class="timeline-title">CISA</div>
-                        <div class="timeline-desc">Certified Information Systems Auditor - ISACA's premier IT audit certification</div>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2026</div>
-                        <div class="timeline-title">IBM Cybersecurity Analyst</div>
-                        <div class="timeline-desc">Professional Certificate - Completed 6 Micro-Credentials including Cybersecurity Fundamentals, Network Security & Compliance</div>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2024</div>
-                        <div class="timeline-title">BSc Information Technologies</div>
-                        <div class="timeline-desc">Bachelor's degree with focus on Information Security and System Administration</div>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="contact" id="contact">
         <div class="container">
             <p class="subtitle">Let's Connect</p>
             <h2>Ready to secure<br>your enterprise?</h2>
             <p class="contact-lead">Currently seeking opportunities in IT Audit, GRC, and Cybersecurity Consulting</p>
             
-            <a href="mailto:huseyn@example.com" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;">Start a Conversation</a>
+            <a href="mailto:huseyngasimovv@gmail.com" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;">Start a Conversation</a>
             
             <div class="social-links">
                 <a href="https://linkedin.com/in/huseyngasimovv" target="_blank" class="social-link" aria-label="LinkedIn">in</a>
                 <a href="https://github.com/huseyngasimov" target="_blank" class="social-link" aria-label="GitHub">gh</a>
                 <a href="https://www.instagram.com/huseyngasim0v/" target="_blank" class="social-link" aria-label="Instagram">ig</a>
+                <a href="https://www.youtube.com/@huseynngasimov" target="_blank" class="social-link" aria-label="YouTube">yt</a>
             </div>
         </div>
     </section>
@@ -1019,7 +849,19 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
-        const phrases = ['check boxes.', 'find vulnerabilities.', 'enable business.'];
+        const phrases = [
+            'check boxes.',
+            'find vulnerabilities.', 
+            'enable business.',
+            'audit controls.',
+            'manage risks.',
+            'ensure compliance.',
+            'protect data.',
+            'build trust.',
+            'design frameworks.',
+            'mitigate threats.'
+        ];
+        
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -1065,7 +907,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.case-study, .timeline-item').forEach((el) => observer.observe(el));
+        document.querySelectorAll('.case-study').forEach((el) => observer.observe(el));
 
         const cursor = document.querySelector('.cursor');
         const cursorDot = document.querySelector('.cursor-dot');
